@@ -2,6 +2,10 @@
 
 
 
+https://user-images.githubusercontent.com/79730539/179322369-a680327e-9261-47ec-bdd6-f3f229837550.mp4
+
+
+
 ### 🛠 Technologies
 
 This project was developed with the following technologies:
