@@ -1,67 +1,51 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(
+      MaterialApp(
+        home: BallPage(),
+      ),
+    );
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+class BallPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return Scaffold(
+      backgroundColor: Colors.blue,
+      appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
+        title: Text('Ask Me Anything'),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      body: Ball(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+class Ball extends StatefulWidget {
+  Ball({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<Ball> createState() => _BallState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class _BallState extends State<Ball> {
+  int ballNumber = 1;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+    return Center(
+      child: Container(
+        child: ElevatedButton(
+          child: Image(
+            image: AssetImage('assets/images/ball$ballNumber.png'),
+          ),
+          onPressed: () {
+            setState(() {
+              ballNumber = Random().nextInt(5) + 1;
+              print(ballNumber);
+            });
+          },
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
